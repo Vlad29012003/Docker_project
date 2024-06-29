@@ -1,13 +1,23 @@
 import mysql from 'mysql2'
 
+const MySQL_HOST = process.env.MySQL_HOST || 'mysql'
+const MySQL_USER = process.env.MySQL_USER || 'root'
+const MySQL_PORT = process.env.MySQL_PORT || '3306'
+const MySQL_PASSWORD = process.env.MySQL_PASSWORD || 'password'
+const MySQL_DB = process.env.MySQL_DB || 'admin'
+
+
+
 const pool = mysql.createPool({
   connectionLimit: 100,
-  host: 'mysql',
-  port: '3306',
-  user: 'root',
-  password: 'password',
-  database: 'time_db',
+  host: MySQL_HOST,
+  port: MySQL_PORT,
+  user: MySQL_USER,
+  password: MySQL_PASSWORD,
+  database: MySQL_DB,
 })
+
+console.log(process.env.MySQL_HOST)
 
 const CREATE_TIMES_TABLE_SQL = `CREATE TABLE IF NOT EXISTS times (
   id INT AUTO_INCREMENT PRIMARY KEY,
